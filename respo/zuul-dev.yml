@@ -1,0 +1,19 @@
+
+server:
+  port: 8000
+
+zuul:
+  sensitive-headers: Cookie,Set-Cookie
+  prefix: /api
+  routes:
+    api-auth:
+      path: /auth/**
+      serviceId: server-oauth
+    api-news:
+      path: /news/**
+      serviceId: service-news
+security:
+  oauth2:
+    resource:
+      access-token-uri: http://localhost:8900/auth/token
+      user-info-uri: http://localhost:8900/user
